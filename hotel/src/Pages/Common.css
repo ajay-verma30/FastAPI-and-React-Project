@@ -1,0 +1,100 @@
+.one{
+    width: 100w;
+    height: 80vh;
+    background: url('../../public/Images/home.jpg');
+    background-position: center;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.booking-container{
+    border-radius: 20px;
+    padding: 2%;
+    width: 40%;
+    position: absolute;
+    background-color: white;
+    margin-left: 100px !important;
+    margin-top: 100px !important;
+}
+
+.booking-btn{
+    width: 50%;
+}
+
+.form-label{
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(82, 81, 81);
+}
+
+.two{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(255, 231, 199);
+}
+
+.content{
+    padding: 15%;
+}
+
+.about-img{
+    width: 100%;
+    height: 500px;
+}
+
+.read-more, .card-btn{
+    background-color: rgb(255, 217, 49) !important;
+    border-color: rgb(255, 183, 0) !important;
+    color: black !important;
+}
+
+.read-more:hover, .card-btn:hover{
+    background-color: rgb(238, 194, 0) !important;
+}
+
+.two-header{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.three{
+    padding-top: 2%;
+    padding-left: 2%;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(248, 240, 230);
+}
+
+.contact-form{
+    padding: 2%;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.review-slider-section{
+    background-color: transparent !important;
+}
+
+.sliders{
+    background-color: rgb(250, 192, 116) !important;
+}
+
+
+.footer{
+    background-color: rgb(27, 27, 27);
+    color: white;
+}
+
+
+.booking-container1{
+    padding: 3%;
+    background-color: white;
+}
+
+.final-booking{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
