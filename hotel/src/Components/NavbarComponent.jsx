@@ -14,7 +14,7 @@ function NavbarComponent() {
   const [password, setPassword] = useState('');
   const [show, setShow] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
-
+  const [name, setName] = useState('')
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const toggleFlip = () => setIsFlipped(!isFlipped);
@@ -44,6 +44,19 @@ navi('/')
       console.error(err);
     }
   };
+
+ const handleRegister = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await axios.post('http://127.0.0.1:8000/users', { name, email, password });
+    login(res.data); 
+    setIsFlipped(false);
+  } catch (err) {
+    alert('Registration failed!');
+    console.error(err);
+  }
+};
+
 
   return (
     <Navbar bg="light" expand="lg" className="shadow-sm">
@@ -96,22 +109,31 @@ navi('/')
 
             {/* Register (UI only for now) */}
             <div className="flip-card-back">
-              <Modal.Header closeButton><Modal.Title>Register</Modal.Title></Modal.Header>
-              <Modal.Body>
-                <Form>
-                  <Form.Group><Form.Label>Full Name</Form.Label><Form.Control type="text" /></Form.Group>
-                  <Form.Group><Form.Label>Email</Form.Label><Form.Control type="email" /></Form.Group>
-                  <Form.Group><Form.Label>Password</Form.Label><Form.Control type="password" /></Form.Group>
-                </Form>
-                <p className="text-center mt-3">
-                  Already have an account? <span className="text-primary" onClick={toggleFlip} style={{ cursor: 'pointer' }}>Login</span>
-                </p>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>Close</Button>
-                <Button variant="success">Register</Button>
-              </Modal.Footer>
-            </div>
+  <Modal.Header closeButton><Modal.Title>Register</Modal.Title></Modal.Header>
+  <Modal.Body>
+    <Form onSubmit={handleRegister}>
+      <Form.Group>
+        <Form.Label>Full Name</Form.Label>
+        <Form.Control type="text" value={name} onChange={(e) => setName(e.target.value)} />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Email</Form.Label>
+        <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      </Form.Group>
+      <p className="text-center mt-3">
+        Already have an account? <span className="text-primary" onClick={toggleFlip} style={{ cursor: 'pointer' }}>Login</span>
+      </p>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>Close</Button>
+        <Button variant="success" type="submit">Register</Button>
+      </Modal.Footer>
+    </Form>
+  </Modal.Body>
+</div>
 
           </div>
         </div>

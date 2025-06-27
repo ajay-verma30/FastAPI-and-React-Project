@@ -8,15 +8,13 @@ import axios from 'axios';
 function Booking() {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { token } = useAuth();
+  const { token, user } = useAuth();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [currency, setCurrency] = useState('');
 
   const [showPayment, setShowPayment] = useState(false);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
-  console.log(state)
   const [loading, setLoading] = useState(false);
 
   const handleBookClick = () => {
@@ -29,7 +27,6 @@ function Booking() {
       setShowPayment(false);
       setPaymentSuccess(true);
 
-      // Prepare data for API
       const bookingPayload = {
   booking_type: state.selected || "solo",
   checkin: new Date(state.checkInDate).toISOString().split('T')[0],
@@ -50,7 +47,7 @@ function Booking() {
 
         console.log('Booking successful:', res.data);
         alert('Booking successful!');
-        navigate('/profile'); // Redirect after success
+        navigate('/profile'); 
       } catch (error) {
         console.error('Booking failed:', error);
         alert('Booking failed. Please try again.');
@@ -62,7 +59,7 @@ function Booking() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleBookClick(); // Open payment modal on form submit
+    handleBookClick(); 
   };
 
   return (
@@ -81,31 +78,21 @@ function Booking() {
               <Col md={6}>
                 <Form.Group>
                   <Form.Label>Name</Form.Label>
-                  <Form.Control type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+                  <Form.Control type="text" value={user.name} onChange={(e) => setName(e.target.value)} required />
                 </Form.Group>
               </Col>
               <Col md={6}>
                 <Form.Group>
                   <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                  <Form.Control type="email" value={user.email} onChange={(e) => setEmail(e.target.value)} required />
                 </Form.Group>
               </Col>
             </Row>
-
-            <Form.Group className="mt-3">
-              <Form.Label>Select Currency</Form.Label>
-              <Form.Select value={currency} onChange={(e) => setCurrency(e.target.value)} required>
-                <option value="">Choose...</option>
-                <option value="INR">INR - ₹</option>
-                <option value="USD">USD - $</option>
-                <option value="EUR">EUR - €</option>
-              </Form.Select>
-            </Form.Group>
             <br />
             <Button
               className="btn btn-success booking-btn"
               id="confirm-booking"
-              disabled={!name || !email || !currency}
+              disabled={!name || !email }
               type="submit"
             >
               Confirm Booking

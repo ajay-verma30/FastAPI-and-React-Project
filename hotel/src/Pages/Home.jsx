@@ -5,6 +5,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Slider from 'react-slick';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'
 
 
 function Home() {
@@ -14,6 +15,7 @@ function Home() {
   const [rooms, setRooms] = useState('');
   const [people, setPeople] = useState('');
 const navigate = useNavigate();
+const { isLoggedIn } = useAuth();
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -181,7 +183,14 @@ const navigate = useNavigate();
                         </Col>
                     </Row>    
                     <div className="d-flex justify-content-center">
-                        <Button className="btn btn-success booking-btn" type='submit'>Book</Button>
+                        <Button
+  className="btn btn-success booking-btn"
+  type="submit"
+  disabled={!isLoggedIn}
+  title={!isLoggedIn ? "Please login to book" : ""}
+>
+  Book
+</Button>
                     </div>              
                 </Form>
             </div>
@@ -315,14 +324,14 @@ const navigate = useNavigate();
         <section className='footer' >
             <Row>
                 <Col xs={12} md={6} style={{padding:"2%"}}>
-                ©2025 The Leela Palaces, Hotels and Resorts. All Rights Reserved.
+                ©2025 Hotels and Resorts. All Rights Reserved.
                 </Col>
                 <Col xs={12} md={3} style={{padding:"2%"}}>
                 <p> Social Media Platforms</p>
-                <a href='#'>X</a><br/>
-                <a href='#'>Instagram</a>
+                <a href='www.google.com'>X</a><br/>
+                <a href='www.google.com'>Instagram</a>
                 <br/>
-                <a href='#'>Facebook</a>
+                <a href='www.google.com'>Facebook</a>
                 </Col>
                 <Col xs={12} md={3} style={{padding:"2%"}}>
                     <h5>Subscribe to Newsletter</h5>
