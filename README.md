@@ -9,7 +9,7 @@ HotelMate is a full-stack web application for hotel room booking. Built with **F
 ### 🧠 Backend – FastAPI (Python)
 - FastAPI (for API endpoints)
 - SQLAlchemy (ORM)
-- SQLite (RDS)
+- PostgreSQL or SQLite (database)
 - JWT Authentication
 - CORS, Dependency Injection
 - Pydantic (for validation)
@@ -40,3 +40,45 @@ HotelMate is a full-stack web application for hotel room booking. Built with **F
 ```bash
 git clone https://github.com/your-username/bookingapp.git
 cd bookingapp
+2️⃣ Backend Setup (FastAPI)
+bash
+Copy
+Edit
+cd backend
+python -m venv venv
+source venv/bin/activate   # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn main:app --reload
+✅ Make sure .env or config has DB and JWT secret properly set.
+
+3️⃣ Frontend Setup (React)
+bash
+Copy
+Edit
+cd frontend
+npm install
+npm start
+Frontend runs on: http://localhost:3000
+Backend runs on: http://localhost:8000
+
+🔐 Authentication Flow
+JWT tokens issued after login
+
+Stored in localStorage
+
+AuthContext manages auth state in frontend
+
+Protected API routes require Authorization: Bearer <token>
+
+🧪 API Endpoints (FastAPI)
+Endpoint	Method	Description
+/auth/register	POST	Register a new user
+/auth/login	POST	User login (JWT)
+/bookings/	POST	Create a booking
+/bookings/me	GET	Fetch user bookings
+/bookings/{id}/cancel	PATCH	Cancel a booking
+
+
+🙌 Author
+Made with ❤️ by Ajay Verma
+Feel free to contribute or raise issues!
