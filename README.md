@@ -34,6 +34,7 @@ HotelMate is a full-stack web application for hotel room booking. Built with **F
 ---
 
 ## 🛠️ Local Setup Instructions
+NOTE: Make Sure to use your own credentials in .env file inorder to connect to the Database. 
 
 ### 1️⃣ Clone the Repo
 
